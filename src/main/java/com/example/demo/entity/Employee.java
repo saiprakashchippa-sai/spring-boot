@@ -1,30 +1,23 @@
 package com.example.demo.entity;
 
-import lombok.AllArgsConstructor;
+import com.azure.spring.data.cosmos.core.mapping.Container;
+import com.azure.spring.data.cosmos.core.mapping.PartitionKey;
 import lombok.Data;
-import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.Id;
 
-import javax.persistence.*;
 
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
-@Entity
-@Table(name="TBL_EMPLOYEES")
+@Container(containerName = "employee", autoCreateContainer = false)
 public class Employee {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
-
-    @Column(name = "Name")
+    @PartitionKey
+    private String id;
     private String name;
 
-    @Column(name = "DEPT")
     private String  dept;
 
-    @Column(name = "SALARY")
-    private double salary;
+   private double salary;
 
 
 }

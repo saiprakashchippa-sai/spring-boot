@@ -1,14 +1,13 @@
 package com.example.demo.controller;
 
 import com.example.demo.entity.Employee;
-import com.example.demo.repository.EmployeeRepository;
+import com.example.demo.repository.EmpRepository;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-import java.util.Optional;
+import org.springframework.web.bind.annotation.*;
+import reactor.core.publisher.Flux;
 
 
 @RestController
@@ -17,24 +16,25 @@ import java.util.Optional;
 public class EmployeeController {
 
     @Autowired
-    private EmployeeRepository repository;
+    private EmpRepository emp;
 
-    @PostMapping("/saveEmployee")
+    /*@PostMapping("/saveEmployee")
     @ApiOperation(value = "Store Employess API")
     public String saveEmployee(@RequestBody Employee employee){
         repository.save(employee);
         return "Employee saved.....";
 
-    }
+    }*/
 
-    @GetMapping("/getAllEmployess")
+   /* @GetMapping("/getAllEmployees")
     @ApiOperation(value = "Get All Employees API")
-    public List<Employee> getAll(){
-        return repository.findAll();
+    public Flux<Employee> getAll(){
+        Flux<Employee> all = emp.findAll();
+        return all;
 
-    }
+    }*/
 
-    @GetMapping("/getEmp/{dept}")
+    /*@GetMapping("/getEmp/{dept}")
     @ApiOperation(value = "Get Employee By Dept")
     public List<Employee> getEmployeeByDept(@PathVariable String dept){
        return repository.findByDept(dept);
@@ -43,7 +43,7 @@ public class EmployeeController {
 
     @GetMapping("/getEmployee/{id}")
     @ApiOperation(value = "Get Employee By Id")
-    public Optional<Employee> getEmployeeById(@PathVariable Integer id){
+    public Optional<Employee> getEmployeeById(@PathVariable String id){
         return repository.findById(id);
-    }
+    }*/
 }
